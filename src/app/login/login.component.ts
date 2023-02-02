@@ -42,7 +42,7 @@ export class LoginComponent {
     }
 
     // Password less than 8 chars condition
-    if (passwordText.length < 8) {
+    if (passwordText.length > 1 && passwordText.length < 8) {
       this.first = this.second = this.third = Colors.red;
       this.hintText = 'Must be at least 8 characters';
     }
