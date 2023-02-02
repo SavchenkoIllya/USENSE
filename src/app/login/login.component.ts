@@ -14,6 +14,7 @@ import { Symbols } from './Symbols';
 })
 export class LoginComponent {
   password = new FormControl('');
+  details: boolean = false;
 
   // Password indicators
   first: string = Colors.gray;
@@ -24,17 +25,19 @@ export class LoginComponent {
 
   checkPassword(password: FormControl): void {
     let passwordText: string = password.value;
+    let passwordLength: number = password.value.length;
 
     // Password less than 8 chars condition
-    if (passwordText.length > 0 && passwordText.length < 8) {
-    this.first = this.second = this.third = Colors.red;
-    this.hintText = 'Must be at least 8 characters';
+    if (passwordLength > 0 && passwordLength < 8) {
+      this.first = this.second = this.third = Colors.red;
+      this.hintText = 'Must be at least 8 characters';
     }
 
     //prevent typing unicluded characters
-    if (!Symbols.all.test(passwordText[passwordText.length - 1])) {
+    if (!Symbols.all.test(passwordText[passwordLength - 1])) {
       let filtered = passwordText.slice(0, -1);
       password.setValue(filtered);
+      this.details = true;
     }
 
     //reset styles if empty field
@@ -44,8 +47,7 @@ export class LoginComponent {
     }
 
     // Password more than 8 chars condition
-    if (passwordText.length >= 8) {
-
+    if (passwordLength >= 8) {
       //weak password conditions
       if (
         Symbols.letters.test(passwordText) ||
