@@ -23,16 +23,18 @@ export class LoginComponent {
   hintText: string = 'Check your password strength';
 
   checkPassword(password: FormControl): void {
-    let passwordText = password.value;
-    let passwordArr = passwordText.split('');
+    let passwordText: string = password.value;
 
-    //don't allow white spaces in the password
-    if (passwordArr.includes(' ')) {
-      let passwordFiltered = passwordArr
-        .filter((item: string) => item !== ' ')
-        .join('')
-        .toString();
-      return password.setValue(passwordFiltered);
+    // Password less than 8 chars condition
+    if (passwordText.length > 0 && passwordText.length < 8) {
+    this.first = this.second = this.third = Colors.red;
+    this.hintText = 'Must be at least 8 characters';
+    }
+
+    //prevent typing unicluded characters
+    if (!Symbols.all.test(passwordText[passwordText.length - 1])) {
+      let filtered = passwordText.slice(0, -1);
+      password.setValue(filtered);
     }
 
     //reset styles if empty field
@@ -41,14 +43,9 @@ export class LoginComponent {
       this.hintText = 'Check your password strength';
     }
 
-    // Password less than 8 chars condition
-    if (passwordText.length > 0 && passwordText.length < 8) {
-      this.first = this.second = this.third = Colors.red;
-      this.hintText = 'Must be at least 8 characters';
-    }
-
     // Password more than 8 chars condition
     if (passwordText.length >= 8) {
+
       //weak password conditions
       if (
         Symbols.letters.test(passwordText) ||
