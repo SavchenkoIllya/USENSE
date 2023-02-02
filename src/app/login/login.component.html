@@ -1,0 +1,23 @@
+<form>
+
+  <label>Test your password here:</label>
+  <input
+    type="text"
+    placeholder="How strong is it?"
+    [formControl]="password"
+    autofocus
+    (ngModelChange)="checkPassword(password)"
+    value="password"
+    maxlength="256"
+  />
+
+  <div class="indicators-result">
+    <div class="indicators">
+      <div [ngStyle]="{ background: first }"></div>
+      <div [ngStyle]="{ background: second }"></div>
+      <div [ngStyle]="{ background: third }"></div>
+    </div>
+    <p>{{ hintText }}</p>
+  </div>
+
+</form>
