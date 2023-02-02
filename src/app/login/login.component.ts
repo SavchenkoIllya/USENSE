@@ -14,13 +14,14 @@ import { Symbols } from './Symbols';
 })
 export class LoginComponent {
   password = new FormControl('');
-  details: boolean = false;
 
   // Password indicators
   first: string = Colors.gray;
   second: string = Colors.gray;
   third: string = Colors.gray;
 
+  details: boolean = false;
+  
   hintText: string = 'Check your password strength';
 
   checkPassword(password: FormControl): void {
