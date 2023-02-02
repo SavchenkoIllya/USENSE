@@ -1,5 +1,4 @@
 <form>
-
   <label>Test your password here:</label>
   <input
     type="text"
@@ -11,6 +10,13 @@
     maxlength="256"
   />
 
+  <p *ngIf="details">
+    Please use only: <br />
+    Big or small letters from English alphabet<br />
+    Numbers 0-9 <br />
+    Symbols (!@#$%^&*()_+~ etc.)
+  </p>
+
   <div class="indicators-result">
     <div class="indicators">
       <div [ngStyle]="{ background: first }"></div>
@@ -19,5 +25,4 @@
     </div>
     <p>{{ hintText }}</p>
   </div>
-
 </form>
