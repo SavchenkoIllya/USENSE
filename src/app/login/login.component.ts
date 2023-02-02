@@ -15,14 +15,15 @@ import { Symbols } from './Symbols';
 export class LoginComponent {
   password = new FormControl('');
 
+  //hints
+  hintText: string = 'Your password strength meter';
+  details: boolean = false;
+
   // Password indicators
   first: string = Colors.gray;
   second: string = Colors.gray;
   third: string = Colors.gray;
 
-  details: boolean = false;
-  
-  hintText: string = 'Check your password strength';
 
   checkPassword(password: FormControl): void {
     let passwordText: string = password.value;
