@@ -24,7 +24,6 @@ export class LoginComponent {
   second: string = Colors.gray;
   third: string = Colors.gray;
 
-
   checkPassword(password: FormControl): void {
     let passwordText: string = password.value;
     let passwordLength: number = password.value.length;
@@ -35,9 +34,9 @@ export class LoginComponent {
       this.hintText = 'Must be at least 8 characters';
     }
 
-    //prevent typing unicluded characters
-    if (!Symbols.all.test(passwordText[passwordLength - 1])) {
-      let filtered = passwordText.slice(0, -1);
+    //prevent typing unincluded characters
+    if (Symbols.else.test(passwordText)) {
+      let filtered = passwordText.replace(Symbols.else, '');
       password.setValue(filtered);
       this.details = true;
     }
@@ -73,7 +72,7 @@ export class LoginComponent {
       }
 
       //strong password conditions
-      else if (Symbols.all.test(passwordText)) {
+      else if (Symbols.allAllowed.test(passwordText)) {
         this.first = this.second = this.third = Colors.green;
         this.hintText = 'Really good password';
       }
