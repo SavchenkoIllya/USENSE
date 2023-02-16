@@ -28,7 +28,6 @@ export class CustomInputComponent implements ControlValueAccessor {
   checkPassword(value: string): void {
     let passwordText: string = value;
     let passwordLength: number = value.length;
-
     let minLength: number = 8;
     let strength = 0;
 
@@ -44,17 +43,22 @@ export class CustomInputComponent implements ControlValueAccessor {
       this.indicatorsService.openDetails();
     }
 
+    //check if empty
+    passwordText === '' ? (strength = 0) : strength;
+    //less then min length for password
     passwordLength > 0 && passwordLength < minLength
       ? (strength = strength + 10)
       : strength;
-    passwordText === '' ? (strength = 0) : strength;
+    //more then min length for password
     passwordLength >= minLength ? (strength = strength + 20) : strength;
+    //sybols include
     Symbols.letters.test(passwordText) ? ++strength : strength;
     Symbols.numbers.test(passwordText) ? ++strength : strength;
     Symbols.symbols.test(passwordText) ? ++strength : strength;
     this.changeIndicatorsColors(strength, minLength)
   }
   
+  //change colors
   changeIndicatorsColors(strength, minLength){
     switch (true) {
       case strength == 0:
@@ -101,5 +105,4 @@ export class CustomInputComponent implements ControlValueAccessor {
         break;
     }
   }
-
 }
