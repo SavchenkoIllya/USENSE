@@ -7,8 +7,10 @@ import { Colors } from '../assets/Colors';
   providedIn: 'root',
 })
 export class IndicatorsService {
+  //hints
   public hintText = new BehaviorSubject<string>('Your password strength meter');
   public details = new BehaviorSubject<boolean>(false);
+  //validators
   public validators = new BehaviorSubject<string[]>([
     Colors.gray,
     Colors.gray,
@@ -18,11 +20,11 @@ export class IndicatorsService {
   setHintText(value: string) {
     this.hintText.next(value);
   }
-
   openDetails() {
     this.details.next(true);
   }
 
+  //set validators colors
   setValidators(firstColor: string, secondColor: string, thirdColor: string) {
     this.validators.next([firstColor, secondColor, thirdColor]);
   }
