@@ -52,7 +52,10 @@ export class CustomInputComponent implements ControlValueAccessor {
     Symbols.letters.test(passwordText) ? ++strength : strength;
     Symbols.numbers.test(passwordText) ? ++strength : strength;
     Symbols.symbols.test(passwordText) ? ++strength : strength;
-
+    this.changeIndicatorsColors(strength, minLength)
+  }
+  
+  changeIndicatorsColors(strength, minLength){
     switch (true) {
       case strength == 0:
         this.indicatorsService.setValidators(
@@ -98,4 +101,5 @@ export class CustomInputComponent implements ControlValueAccessor {
         break;
     }
   }
+
 }
