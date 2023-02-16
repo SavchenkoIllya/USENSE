@@ -1,0 +1,9 @@
+<label>Test your password:</label>
+<input
+  type="text"
+  placeholder="Type your password here"
+  autofocus
+  [formControl]="password"
+  (input)="onInputValueChange(password)"
+  maxlength="256"
+/>

@@ -1,0 +1,30 @@
+.indicators-result {
+  display: flex;
+  margin-top: 1rem;
+
+  .indicators {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    div {
+      height: 3px;
+      width: 30px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: grey;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .indicators-result {
+    flex-direction: column;
+    align-items: center;
+  }
+}

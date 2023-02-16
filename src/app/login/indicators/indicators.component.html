@@ -1,0 +1,9 @@
+<div class="indicators-result">
+  <div class="indicators">
+    <div
+      *ngFor="let item of indicatorsService.validators.value; let i = index"
+      [ngStyle]="{ background: indicatorsService.validators.value[i] }"
+    ></div>
+  </div>
+  <p>{{ indicatorsService.hintText.value }}</p>
+</div>
